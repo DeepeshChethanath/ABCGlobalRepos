@@ -1,0 +1,63 @@
+﻿@model ABCGlobal.Models.CandidateModel
+
+@{
+    /**/
+    ViewBag.Title = "Candidate";
+}
+
+
+
+<link href="~/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/media/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<div class="row">
+    <div align="center"><h4>CANDIDATE DETAILS</h4></div>
+</div>
+@using (Html.BeginForm("Candidate", "Candidate", FormMethod.Post))
+{
+
+    <div class="row">
+        <div class="col-md-4">
+            <a href="/Candidate/AddCandidate" class="btn btn-primary">Add Controller</a>
+            @*<button id="btnAddCandidate" type="submit" class="btn btn-primary" onclick="@("window.location.href='" + @Url.Action("AddCandidate", "AddCandidate") + "'");">+ Add Candidate</button>*@
+        </div>
+
+    </div>
+    <br />
+    <div class="row">
+        <table id="tblCandidate" class="table table-bordered table-striped table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Work Exp</th>
+                    <th>Address</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var dr in Model.lstCandidates)
+                {
+                    <tr>
+                        <td>@dr.id</td>
+                        <td id="hdfCommName_@dr.id">@dr.candiName</td>
+                        <td id="hdfScenePath_@dr.id">@dr.email</td>
+                        <td id="hdfType_@dr.id">@dr.workExp</td>
+                        <td id="hdfStartDateTime_@dr.id">@dr.address</td>
+                        <td>
+                            <a href="/Candidate/ViewCandidate/@dr.id" class="btn btn-primary">View Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<script src="~/media/js/jquery.dataTables.min.js"></script>
+<script src="~/media/js/dataTables.bootstrap.min.js"></script>
+
+
+
+

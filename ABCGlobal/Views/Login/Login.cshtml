@@ -1,0 +1,46 @@
+﻿@model ABCGlobal.Models.UserModel
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ABCGlobal</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+    {
+        <div style="margin-top:200px;">
+            <div class="col-xs-12 col-sm-12  col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-primary">
+                    <div class="panel-heading">ABCGlobal </div>
+                    <div class="panel-body">
+                        <div class="form-group"><p style="color:red;">@Html.DisplayTextFor(m => m.loginMsg)</p></div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.userName, new { @id = "txtuserName", @placeholder = "User Name", @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.PasswordFor(m => m.password, new { @id = "txtPwd", @placeholder = "Password", @class = "form-control" })
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-success" style="margin-right:5px;">Log In</button>
+                        <a href="/Login/Registration" class="btn btn-primary">Register</a>
+                    </div>
+                </div>
+            </div><!-- /.col-->
+        </div><!-- /.row -->
+
+    }
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+</body>
+</html>
+
+

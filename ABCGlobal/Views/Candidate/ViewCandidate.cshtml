@@ -1,0 +1,93 @@
+﻿@model ABCGlobal.Models.CandidateModel
+
+@{
+    ViewBag.Title = "ViewCandidate";
+}
+
+<h2>ViewCandidate</h2>
+@using (Html.BeginForm("CandidateDelete", "Candidate", FormMethod.Post))
+{
+
+    <script type="text/javascript">
+        function DeleteData(ctrl) {
+            var dataid = ctrl.id.split('_')[1];
+            if (confirm("Are you sure want to delete")) {
+                $.ajax({
+                    type: "POST",
+                    url: "../Candidate/CandidateDelete",
+                    data: '{id: "' + dataid + '" }',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        alert('Deleted Successfully!');
+                    },
+                    failure: function (response) { }
+                    //alert(response.d);
+                });
+            }
+        }
+    </script>
+
+    @Html.HiddenFor(m => m.id, new { @id = "Id" })
+    <div class="container-fluid">
+        <div class="row">
+            <div class="form-group col-md-3 col-sm-12 col-xs-12" style="margin:1px;padding:1px;">
+                First Name :
+                @Html.TextBoxFor(m => m.firstName, new { @class = "form-control", @id = "txtfirstName", @readonly = "readonly" })
+            </div>
+            <div class="form-group col-md-3 col-sm-12 col-xs-12" style="margin:1px;padding:1px;">
+                Last Name :
+                @Html.TextBoxFor(m => m.lastName, new { @class = "form-control", @id = "txtlastName", @readonly = "readonly" })
+            </div>
+            <div class="form-group col-md-4 col-sm-12 col-xs-12" style="margin:1px;padding:1px;">
+                Email :
+                @Html.TextBoxFor(m => m.email, new { @class = "form-control", @id = "txtemail", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-1 col-sm-12 col-xs-12" style="margin:1px;padding:1px;">
+                Phone Code :
+                @Html.TextBoxFor(m => m.phCode, new { @class = "form-control", @id = "txtphCode", @readonly = "readonly" })
+            </div>
+            <div class="form-group col-md-3 col-sm-12 col-xs-12" style="margin:1px;padding:1px;">
+                Mobile :
+                @Html.TextBoxFor(m => m.mobile, new { @class = "form-control", @id = "txtmobile", @readonly = "readonly" })
+            </div>
+            <div class="form-group col-md-3 col-sm-12 col-xs-12" style="margin:1px;padding:1px;">
+                City :
+                @Html.TextBoxFor(m => m.city, new { @class = "form-control", @id = "txtcity", @readonly = "readonly" })
+            </div>
+            <div class="form-group col-md-3 col-sm-12 col-xs-12" style="margin:1px;padding:1px;">
+                State :
+                @Html.TextBoxFor(m => m.state, new { @class = "form-control", @id = "txtstate", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3 col-sm-12 col-xs-12" style="margin:1px;padding:1px;">
+                Country :
+                @Html.TextBoxFor(m => m.country, new { @class = "form-control", @id = "txtcountry", @readonly = "readonly" })
+            </div>
+            <div class="form-group col-md-3 col-sm-12 col-xs-12" style="margin:1px;padding:1px;">
+                Pincode :
+                @Html.TextBoxFor(m => m.pincode, new { @class = "form-control", @id = "txtpincode", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3 col-sm-12 col-xs-12" style="margin:1px;padding:1px;">
+                Profile Picture :
+                @Html.TextBoxFor(m => m.profilePic, new { @class = "form-control", @id = "txtprofilePic", @readonly = "readonly" })
+            </div>
+            <div class="form-group col-md-3 col-sm-12 col-xs-12" style="margin:1px;padding:1px;">
+                Work Exp :
+                @Html.TextBoxFor(m => m.workExp, new { @class = "form-control", @id = "txtworkExp", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-sm-12" style="padding:1px;margin-top:15px;">
+                <button id="btnDelete_@Model.id" type="submit" class="btn btn-danger" onclick="DeleteData(this)" name="btnDelete">Delete</button>
+                @*<a href="/AddCandidate/ViewCandidate/@Model.id" class="btn btn-primary">Delete</a>*@
+                <a href="/Candidate/Candidate" class="btn btn-warning">Go Back</a>
+            </div>
+        </div>
+    </div>
+}
